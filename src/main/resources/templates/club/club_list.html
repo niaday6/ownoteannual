@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+</head>
+<body>
+
+
+    <div class="title-text">
+        <div class="title board"><h1>동아리</h1></div>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>개설자</th>
+            <th>동호회 이름</th>
+            <th>한 줄 소개</th>
+            <th>개설일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dto : ${clubInfoDto}">
+            <tr>
+                <td>${dto.club_id}</td>
+                <td>${dto.emp_name}</td>
+                <td>${dto.club_name}</td>
+                <td>${dto.club_sub}</td>
+                <td>${dto.club_regdate}</td>
+            </tr>
+        </tbody>
+
+        <tbody>
+    </table>
+
+<!--    <div class="buttons">-->
+<!--        <a class="button-writego" href="#" id="write-link">[게시글쓰기]</a>-->
+<!--    </div>-->
+
+</body>
+</html>

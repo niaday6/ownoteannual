@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.ownote.emp.EmpMapper">
+    <insert id="insertEmp" parameterType="com.project.ownote.emp.signUp.dto.SignUpDto">
+        INSERT INTO EMP (empNum, empPassword, empName, empBirth, empEmail, empPhone, empDate, gradeNum, deptNum)
+        VALUES (#{empNum}, #{empPassword}, #{empName}, #{empBirth}, #{empEmail}, #{empPhone}, now()
+        ,#{gradeNum}, #{deptNum})
+    </insert>
+    <select id="getEmpAddress" resultType="com.project.ownote.emp.adress.dto.EmpAdressDto">
+        SELECT e.empName as empName, e.empEmail as empEmail, d.deptName as deptName, g.gradeName as gradeName
+        FROM emp e, dept d, grade g
+        WHERE e.deptNum = d.deptNum
+          AND e.gradeNum = g.gradeNum
+    </select>
+</mapper>
