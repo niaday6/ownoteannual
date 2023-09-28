@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.ownote.annual.dao.AnnualDao">
+
+    <select id="countAnnual" resultType="Integer">
+        SELECT count(*) FROM annual
+    </select>
+
+
+    <insert id="writeAnnual" parameterType="com.project.ownote.annual.dto.AnnualDto">
+        insert into annual values (null,#{annual_content},#{annual_startdate},#{annual_enddate},#{annual_time},#{anninfo_code},1,1)
+    </insert>
+
+<select id="findEmpNameById" parameterType="int" resultType="java.lang.String">
+    SELECT emp_name FROM emp WHERE emp_id = 1
+
+</select>
+    <select id="codeId" resultType="int">
+        select anninfo_date from anninfo where anninfo_code=#{param1}
+    </select>
+    <select id="checkId" resultType="int">
+        select anncheck_pass  from anncheck where anncheck_id
+                                                      =#{param1}
+    </select>
+
+
+    <select id="annualAllList" resultType= "com.project.ownote.annual.dto.AnnualDto">
+
+select * from annual
+    </select>
+
+    <select id="annualListByID" resultType="com.project.ownote.annual.dto.AnnualDto">
+        select * from annual where emp_id = 1
+    </select>
+
+
+    <delete id="annualDeleteId" parameterType="Long">
+        Delete from annual where annual_id = #{annual_id}
+    </delete>
+
+
+
+
+<!--    SELECT a.emp_id,a.annual_content,a.annual_startdate,-->
+<!--    a.annual_enddate,a.annual_time, i.anninfo_name,c.anncheck_pass-->
+<!--    FROM annual a ,anninfo i ,anncheck c where a.anninfo_code = i.anninfo_code and-->
+<!--    a.anncheck_id = c.anncheck_id ;-->
+
+</mapper>

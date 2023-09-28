@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr><th>기존 연차</th><th>추가된 연차</th><th>사용된 연차</th><th>잔여 연차</th></tr>
+    <tr th:each="obj : ${list}">
+        <td th:text="${obj.anndata_date}"></td>
+        <td th:text="${obj.anndata_add}"></td>
+        <td th:text="${obj.anndata_used}"></td>
+        <td th:text="${obj.anndata_extra}"></td>
+
+    </tr>
+</table>
+
+<table border="1">
+    <tr><th>연차 사유</th><th>연차 시작일</th><th>연차 종료일</th><th>연차 사용 수량</th>
+        <th>연차 종류</th><th>진행 상황</th><th>수정</th></tr>
+    <tr th:each="obj1 : ${list1}">
+<!--        <td th:if="{${obj1.anncheck_id ==1} th:href="@{'/annModify/{annual_id}'+${obj1.annual_id}}">-->
+<!--                th:text="${obj1.annual_content}"></td>-->
+        <td>
+            <!-- anncheck_id가 1인 경우에만 수정 링크 생성 -->
+            <a th:if="${obj1.anncheck_id == 1}" th:href="@{'/annModify/' + ${obj1.annual_id}}">
+                <span th:text="${obj1.annual_content}"></span>
+            </a>
+            <!-- anncheck_id가 1이 아닌 경우에는 텍스트만 표시 -->
+            <span th:unless="${obj1.anncheck_id == 1}" th:text="${obj1.annual_content}"></span>
+        </td>
+
+        <td th:text="${obj1.annual_startdate}"></td>
+        <td th:text="${obj1.annual_enddate}"></td>
+        <td th:text="${obj1.annual_time}"></td>
+        <td th:text="${obj1.anninfo_code}"></td>
+        <td th:text="${obj1.anncheck_id == 1 ? '승인 대기중' : (obj1.anncheck_id == 2 ? '승인':'반려')}"> </td>
+        <td>
+            <a th:if="${obj1.anncheck_id == 1}" th:href="@{'/delete/' + ${obj1.annual_id}}">삭제</a>
+        </td>
+
+        <!--        <td th:text=""></td>-->
+<!--          <td th:text="${obj1.anncheck_id}"></td>-->
+
+
+    </tr>
+</table>
+
+</body>
+</html>

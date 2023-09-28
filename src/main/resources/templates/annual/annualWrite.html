@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="write">
+    <form th:action="@{/annual/write}" method="post">
+
+        <p>
+            <label>연차 구분</label>
+            <select name="anninfo_code" id="anninfo_code">
+                <option value="0">연차 종류를 선택하세요</option>
+                <option value="1">연차</option>
+                <option value="2">반차</option>
+                <option value="3">반반차</option>
+                <option value="4">공가</option>
+                <option value="5">병가</option>
+                <option value="6">출산휴가/배우자출산휴가</option>
+            </select>
+        </p>
+        <p>
+            <label>연차 사유</label><br>
+            <textarea name="annual_content" rows="10" cols="50" style="resize: none"></textarea>
+        </p>
+
+        <p>
+            <label for="annual_startdate">연차 시작일</label>
+            <input type="date" id="annual_startdate" name="annual_startdate"  required><br>
+        </p>
+        <p>
+            <label for="annual_enddate">연차 종료일</label>
+            <input type="date" id="annual_enddate" name="annual_enddate"  required><br>
+        </p>
+
+        <p>
+            <label for="annual_time">연차 일 수 </label>
+            <input type="text" id="annual_time" name="annual_time" readonly> <!-- readonly 속성 추가 -->
+        </p>
+
+        <input type="submit" value="연차 신청">
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/annualDateFix.js"></script>
+<script src="/js/annualAnninfoCode.js"></script>
+</body>
+</html>

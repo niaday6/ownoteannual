@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+연차 확인 리스트
+<table border="1">
+    <tr><th>연차 사유</th><th>연차 시작일</th><th>연차 종료일</th><th>연차 사용 수량</th>
+    <th>연차 종류</th><th>진행 상황</th><th>수정</th></tr>
+    <tr th:each="obj : ${list}">
+        <td th:text="${obj.annual_content}"></td>
+        <td th:text="${obj.annual_startdate}"></td>
+        <td th:text="${obj.annual_enddate}"></td>
+        <td th:text="${obj.annual_time}"></td>
+        <td th:text="${obj.anninfo_code}"></td>
+
+
+    </tr>
+</table>
+</body>
+</html>

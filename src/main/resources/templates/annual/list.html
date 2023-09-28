@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <style>
+
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>사원번호</th>
+        <th>연차 사유</th>
+        <th>연차 시작 일</th>
+        <th>연차 종료 일</th>
+        <th>연차 사용 수량</th>
+        <th>연차 종류</th>
+        <th>진행 상황</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${annualPage.hasNoAnnualDto()}">
+                <td colspan="7">연차 신청이 없습니다.</td>
+            </tr>
+    <tr th:each="obj : ${annualPage.content}">
+        <td th:text="${obj.emp_id}"></td>
+        <td th:text="${obj.annual_content}"></td>
+        <td th:text="${obj.annual_startdate}"></td>
+        <td th:text="${obj.annual_enddate}"></td>
+        <td th:text="${obj.annual_time}"></td>
+        <td th:text="${obj.anninfo_code}"></td>
+        <td>
+            <select th:if="${obj.anncheck_id == 1}" >
+                <option value="2">승인</option>
+                <option value="3">반려</option>
+            </select>
+            <span th:unless="${obj.anncheck_id == 1}" th:text="${obj.anncheck_id == 2 ? '승인' : '반려'}"></span>
+        </td>
+<!--        <td th:text="${obj.anncheck_id == 1 ? '승인 대기중' : (obj.anncheck_id == 2 ? '승인':'반려')}"> </td>-->
+<!--        <td th:text="${annualService.findEmpNameById(obj.emp_id)}"></td>-->
+    </tr>
+
+<!--    <tr th:if="${annualPage.hasAnnualDto()}">-->
+<!--        <td colspan="7">-->
+<!--        <span th:if="${annualPage.startPage > 5}">-->
+<!--            <a th:href="'list?pageNo=' + ${annualPage.startPage - 5}">[이전]</a>-->
+<!--        </span>-->
+<!--            <span th:each="pNo : ${#numbers.sequence(annualPage.startPage, annualPage.endPage)}">-->
+<!--            <a th:href="'list?pageNo=' + ${pNo}" th:text="[${pNo}]"></a>-->
+<!--        </span>-->
+<!--            <span th:if="${annualPage.endPage < annualPage.totalPages}">-->
+<!--            <a th:href="'list?pageNo=' + ${annualPage.startPage + 5}">[다음]</a>-->
+<!--        </span>-->
+<!--        </td>-->
+<!--    </tr>-->
+    </tbody>
+</table>
+</body>
+
+</html>
