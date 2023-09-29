@@ -33,9 +33,9 @@
 
         <td th:text="${obj1.annual_startdate}"></td>
         <td th:text="${obj1.annual_enddate}"></td>
-        <td th:text="${obj1.annual_time}"></td>
-        <td th:text="${obj1.anninfo_code}"></td>
-        <td th:text="${obj1.anncheck_id == 1 ? '승인 대기중' : (obj1.anncheck_id == 2 ? '승인':'반려')}"> </td>
+        <td th:text="${obj1.anninfo_date}"></td>
+        <td th:text="${obj1.anninfo_name}"></td>
+        <td th:text="${obj1.anncheck_pass }"> </td>
         <td>
             <a th:if="${obj1.anncheck_id == 1}" th:href="@{'/delete/' + ${obj1.annual_id}}">삭제</a>
         </td>

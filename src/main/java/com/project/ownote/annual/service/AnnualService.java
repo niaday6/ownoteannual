@@ -1,7 +1,6 @@
 package com.project.ownote.annual.service;
 
 import com.project.ownote.annual.dao.AnnualDao;
-import com.project.ownote.annual.dto.Annual;
 import com.project.ownote.annual.dto.AnnualDto;
 import com.project.ownote.annual.dto.AnnualPage;
 import com.project.ownote.annual.repository.AnnualRepository;
@@ -32,14 +31,18 @@ public String findEmpNameById(int emp_id){
     return annualDao.findEmpNameById(emp_id);
 }
 
-    public void saveAnnualTime(double annualTime) {
-        // 연차 수량을 DB에 저장하는 로직을 구현합니다.
-        Annual annual = new Annual();
-        annual.setAnnualTime(annualTime);
-        annualRepository.save(annual);
+
+public AnnualDto findById(Long annual_id){
+    return annualDao.annualModify(annual_id);
+}
+
+    public List<AnnualDto>annualList22(int emp_id){
+    return annualDao.annualList22(emp_id);
     }
 
-    public String annualModify(int annual_id){
-    return annualDao.annualModify((long) annual_id);
-    }
+
+public int countAnnualdate(int emp_id){
+    return annualDao.countAnnualdate(emp_id);
+}
+
 }

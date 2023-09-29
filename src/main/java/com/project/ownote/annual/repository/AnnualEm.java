@@ -1,7 +1,6 @@
 package com.project.ownote.annual.repository;
 
-import com.project.ownote.annual.dto.Annual;
-import com.project.ownote.annual.dto.AnnualPage;
+import com.project.ownote.annual.entity.Annual;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,11 +15,12 @@ public class AnnualEm {
 
 
     @Transactional
-    public void annDeleteById(Long annual_id){
-        Annual annual = em.find(Annual.class,annual_id);
-        em.remove(annual);
+    public void annDeleteById(Long annual_id) {
+        Annual annual = em.find(Annual.class, annual_id);
+        if (annual != null) {
+            em.remove(annual);
+        }
     }
-
 
     public Annual annFindById(Long annual_id){
         Annual annual = em.find(Annual.class,annual_id);
@@ -29,8 +29,8 @@ public class AnnualEm {
 
 
     @Transactional
-    public void annModifyById(Long annual_id){
-        em.merge(annual_id);
+    public void annModify(Annual annual){
+        em.merge(annual);
 
     }
 

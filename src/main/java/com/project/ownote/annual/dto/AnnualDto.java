@@ -18,12 +18,16 @@ public class AnnualDto {
     private String annual_content;
     private String annual_startdate;
     private String annual_enddate;
-    private double annual_time;
+    private double anninfo_date;
     private int anninfo_code;
+    private String anninfo_name;
     private int anncheck_id;
     private int emp_id;
     private String emp_name;
     private String anncheck_pass;
+    private  double annual_time;
+
+
 
 
 

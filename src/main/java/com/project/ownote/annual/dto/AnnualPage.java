@@ -1,14 +1,12 @@
 package com.project.ownote.annual.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Setter
 @Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnnualPage {
@@ -20,22 +18,27 @@ public class AnnualPage {
     private int endPage;
 
 
-public AnnualPage(int total,int currentPage, int size,List<AnnualDto> content){
+public AnnualPage(int total,int currentPage, int size, List<AnnualDto> content){
     this.total = total;
     this.currentPage= currentPage;
     this.content = content;
-    if (total == 0){
+
+    if (total == 0) {
         totalPages = 0;
         startPage = 0;
-        endPage=0;
-    }else{
-        totalPages = total/size;
-        if(total % size> 0){
+        endPage = 0;
+    } else {
+        totalPages = total / size;
+        if (total % size > 0) {
             totalPages++;
         }
-        int modVal = currentPage % 5 ;
-        startPage = currentPage / 5 * 5 +1 ;
-        if(endPage > totalPages) endPage = totalPages;
+
+        int modVal = currentPage % 5;
+        startPage = currentPage / 5 * 5 + 1;
+        if (modVal == 0) startPage -= 5;
+
+        endPage = startPage + 4;
+        if (endPage > totalPages) endPage = totalPages;
     }
 }
 public int getTotal(){

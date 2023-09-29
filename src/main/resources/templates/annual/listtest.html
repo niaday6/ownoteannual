@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <style>
+
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>사원번호</th>
+        <th>사원 이름</th>
+        <th>연차 사유</th>
+        <th>연차 시작 일</th>
+        <th>연차 종료 일</th>
+        <th>연차 사용 수량</th>
+        <th>연차 종류</th>
+        <th>진행 상황</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${annualPage.hasNoAnnualDto()}">
+                <td colspan="7">연차 신청이 없습니다.</td>
+            </tr>
+    <tr th:each="obj : ${annualPage.content}">
+        <td th:text="${obj.emp_id}"></td>
+        <td th:text="${obj.emp_name}"></td>
+        <td th:text="${obj.annual_content}"></td>
+        <td th:text="${obj.annual_startdate}"></td>
+        <td th:text="${obj.annual_enddate}"></td>
+        <td th:text="${obj.anninfo_date}"></td>
+        <td th:text="${obj.anninfo_name}"></td>
+        <td>
+            <a th:if="${obj.anncheck_id == 1}" th:href="@{'/anndataModify/' + ${obj.annual_id}}">승인 필요</a>
+
+            <span th:unless="${obj.anncheck_id == 1}">완료</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+
+</html>

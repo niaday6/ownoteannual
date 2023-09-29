@@ -42,12 +42,11 @@
             </select>
             <span th:unless="${obj.anncheck_id == 1}" th:text="${obj.anncheck_id == 2 ? '승인' : '반려'}"></span>
         </td>
-<!--        <td th:text="${obj.anncheck_id == 1 ? '승인 대기중' : (obj.anncheck_id == 2 ? '승인':'반려')}"> </td>-->
-<!--        <td th:text="${annualService.findEmpNameById(obj.emp_id)}"></td>-->
+
     </tr>
 
 <!--    <tr th:if="${annualPage.hasAnnualDto()}">-->
-<!--        <td colspan="7">-->
+<!--        <td colspan="4">-->
 <!--        <span th:if="${annualPage.startPage > 5}">-->
 <!--            <a th:href="'list?pageNo=' + ${annualPage.startPage - 5}">[이전]</a>-->
 <!--        </span>-->

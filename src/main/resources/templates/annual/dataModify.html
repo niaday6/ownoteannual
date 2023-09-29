@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+수정 가능한 페이지
+
+<table>
+    <form method="post" action="/annualModify" th:object="${annual}" id="annual">
+        <tr>
+            <td><label for="anncheck_id" id="anncheck_id">연차 승인</label></td>
+            <td>
+                <!-- 연차 승인 체크박스 (옵션 1) -->
+                <input type="checkbox" name="anncheck_id" value="1" id="approve_radio" onclick="limitCheckboxSelection(this)"> 승인
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <!-- 연차 승인 체크박스 (옵션 2) -->
+                <input type="checkbox" name="anncheck_id" value="2" id="reject_radio" onclick="limitCheckboxSelection(this)"> 반려
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <!-- 제출 버튼 -->
+                <input type="submit" value="제출">
+            </td>
+        </tr>
+    </form>
+</table>
+</body>
+</html>

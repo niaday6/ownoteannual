@@ -11,7 +11,7 @@
 
 
     <insert id="writeAnnual" parameterType="com.project.ownote.annual.dto.AnnualDto">
-        insert into annual values (null,#{annual_content},#{annual_startdate},#{annual_enddate},#{annual_time},#{anninfo_code},1,1)
+        insert into annual values (null,#{annual_content},#{annual_startdate},#{annual_enddate},#{anninfo_code},1,1)
     </insert>
 
 <select id="findEmpNameById" parameterType="int" resultType="java.lang.String">
@@ -28,12 +28,25 @@
 
 
     <select id="annualAllList" resultType= "com.project.ownote.annual.dto.AnnualDto">
-
-select * from annual
+        SELECT a.emp_id, e.emp_name,a.annual_content, a.annual_startdate,
+               a.annual_enddate, i.anninfo_date, c.anncheck_id,c.anncheck_pass,
+               i.anninfo_name,a.annual_id
+        FROM annual a
+                 INNER JOIN anninfo i ON a.anninfo_code = i.anninfo_code
+                 INNER JOIN anncheck c ON a.anncheck_id = c.anncheck_id
+                 INNER JOIN emp e ON a.emp_id  = e.emp_id
     </select>
 
+
+
     <select id="annualListByID" resultType="com.project.ownote.annual.dto.AnnualDto">
-        select * from annual where emp_id = 1
+        SELECT a.emp_id, a.annual_content, a.annual_startdate,
+               a.annual_enddate, i.anninfo_date, c.anncheck_id,c.anncheck_pass,
+               i.anninfo_name,a.annual_id
+        FROM annual a
+                 INNER JOIN anninfo i ON a.anninfo_code = i.anninfo_code
+                 INNER JOIN anncheck c ON a.anncheck_id = c.anncheck_id
+        WHERE a.emp_id = 1
     </select>
 
 
@@ -42,11 +55,38 @@ select * from annual
     </delete>
 
 
+    <select id="countAnnualdate" resultType="Integer">
+        select anndata_date from anndata where emp_id=1
+
+    </select>
+
+    <update id="updateAnnual" parameterType="com.project.ownote.annual.dto.AnnualDto">
+        UPDATE annual
+        SET
+            annual_content = #{annual_content},
+            annual_startdate = #{annual_startdate},
+            annual_enddate = #{annual_enddate},
+            anninfo_code = #{anninfo_code}
+
+        WHERE
+            annual_id = #{annual_id}
+    </update>
 
 
-<!--    SELECT a.emp_id,a.annual_content,a.annual_startdate,-->
-<!--    a.annual_enddate,a.annual_time, i.anninfo_name,c.anncheck_pass-->
-<!--    FROM annual a ,anninfo i ,anncheck c where a.anninfo_code = i.anninfo_code and-->
-<!--    a.anncheck_id = c.anncheck_id ;-->
+
+
+
+        <update id="updateAnndataDate" parameterType="map">
+            UPDATE ann_data
+            SET anndata_date = anndata_date -
+                               CASE anncheck_code
+                                   WHEN 1 THEN 0.25
+                                   WHEN 2 THEN 0.5
+                                   WHEN 3 THEN 1
+                                   ELSE 0
+                                   END
+            WHERE anninfo_code = 1
+        </update>
+
 
 </mapper>

@@ -2,6 +2,8 @@ package com.project.ownote.annualData.controller;
 
 import com.project.ownote.annual.dao.AnnualDao;
 import com.project.ownote.annual.dto.AnnualDto;
+import com.project.ownote.annual.entity.Annual;
+import com.project.ownote.annual.repository.AnnualEm;
 import com.project.ownote.annualData.dto.AnnData;
 import com.project.ownote.annualData.repository.AnnDT;
 import com.project.ownote.annualData.repository.AnnualDataRepository;
@@ -9,11 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 //@RequestMapping("/annual")
 
 @Controller
@@ -24,7 +25,8 @@ public class AnnDataController {
     AnnualDao annualDao;
     @Autowired
     AnnualDataRepository annualDataRepository;
-
+@Autowired
+    AnnualEm annualEm;
 
 //    @RequestMapping(value = "/anndata", method = RequestMethod.GET)
 //    public String AnnualData(Model model){
@@ -44,11 +46,5 @@ public class AnnDataController {
 
 
 
-
-
-//@RequestMapping(value = "/delete/{annual_id}",method = RequestMethod.GET)
-//    public String delete(){
-//
-//}
 
 }

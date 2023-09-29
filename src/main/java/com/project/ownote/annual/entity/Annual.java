@@ -1,4 +1,4 @@
-package com.project.ownote.annual.dto;
+package com.project.ownote.annual.entity;
 
 import lombok.*;
 
@@ -18,11 +18,9 @@ public class Annual {
     private String annual_content;
     private String annual_startdate;
     private String annual_enddate;
-    private double annual_time;
-    private int anninfo_code;
     private int anncheck_id;
     private int emp_id;
-
+    private int anninfo_code;
     public void setAnnualTime(double annualTime) {
     }
 }
